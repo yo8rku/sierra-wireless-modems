@@ -3,7 +3,7 @@
 #
 #.USAGE
 # To start, run:
-# wget https://raw.githubusercontent.com/danielewood/sierra-wireless-modems/master/autoflash-7455.sh && sudo bash autoflash-7455.sh
+# wget https://raw.githubusercontent.com/yo8rku/sierra-wireless-modems/master/autoflash-7455.sh && sudo bash autoflash-7455.sh
 
 #.SYNOPSIS
 # - Only for use on Ubuntu 20.04 (or later) LiveUSB
