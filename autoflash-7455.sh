@@ -352,9 +352,10 @@ function flash_modem_firmware() {
     printf "${CYAN}---${NC}\n"
     echo "Flashing $SWI9X30C_CWE onto Generic Sierra Modem..."
     sleep 5
-    qmi-firmware-update --reset -d "$deviceid"
-    get_modem_bootloader_deviceid
-    deviceid_new=`lsusb | grep -i -E '1199:9071|1199:9079|413C:81B6' | awk '{print $6}'`
+    #cele doua linii de mai jos au fost comentate > eliminate si s-a adaugat  detectarea vid:pid a modemului
+    #qmi-firmware-update --reset -d "$deviceid"
+    #get_modem_bootloader_deviceid
+    deviceid_new=$(lsusb | grep -i -E '1199:9071|1199:9079|413C:81B6' | awk '{print $6}')
     qmi-firmware-update --update -d "$deviceid_new" "$SWI9X30C_CWE" "$SWI9X30C_NVU"
     rc=$?
     if [[ $rc != 0 ]]
