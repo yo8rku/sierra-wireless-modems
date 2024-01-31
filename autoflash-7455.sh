@@ -40,7 +40,7 @@ if [ "$EUID" -ne 0 ]
     exit
 fi
 
-if [[ $(lsb_release -r | awk '{print ($2 >= "20.04")}') -eq 0 ]]; then 
+if [[ $(lsb_release -r | awk '{print ($2 >= "18.04")}') -eq 0 ]]; then 
     echo "Please run on Ubuntu 20.04 (Focal Fossa) or later"
     lsb_release -a
     exit
@@ -354,7 +354,8 @@ function flash_modem_firmware() {
     sleep 5
     qmi-firmware-update --reset -d "$deviceid"
     get_modem_bootloader_deviceid
-    qmi-firmware-update --update-download -d "$deviceid" "$SWI9X30C_CWE" "$SWI9X30C_NVU"
+    deviceid_new=`lsusb | grep -i -E '1199:9071|1199:9079|413C:81B6' | awk '{print $6}'`
+    qmi-firmware-update --update -d "$deviceid_new" "$SWI9X30C_CWE" "$SWI9X30C_NVU"
     rc=$?
     if [[ $rc != 0 ]]
     then
